@@ -1,4 +1,4 @@
-import Component from "./components/ScrollBased";
+import Component from "./components/HoverAndTap";
 
 const App = () => {
   return <Component />;
