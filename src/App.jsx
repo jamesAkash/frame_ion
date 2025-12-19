@@ -1,7 +1,7 @@
-import RotatingBoxWithControls from "./components/RotatingBoxWithControls";
+import Component from "./components/Anima2";
 
 const App = () => {
-  return <RotatingBoxWithControls />;
+  return <Component />;
 };
 
 export default App;

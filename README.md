@@ -1,18 +1,158 @@
-# React + Vite
+# Framer Foundation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## The Core Idea
 
-Currently, two official plugins are available:
+Everything starts by replacing a normal element with a Framer Motion element:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Then control three main things:
+These three cover most real-world animations.
 
-## React Compiler
+```jsx
+import { motion } from "framer-motion";
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+<motion.div />
 
-Note: This will impact Vite dev & build performances.
+<motion.div
+  initial={{ ...startingState }}
+  animate={{ ...targetState }}
+  transition={{ ...howItMoves }}
+/>
 
-## Expanding the ESLint configuration
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Animatable Properties
+
+Framer Motion animates real CSS properties. If CSS can animate it, Framer Motion likely supports it.
+
+Opacity
+initial={{ opacity: 0 }}
+animate={{ opacity: 1 }}
+
+### Transform Properties
+
+#### Position
+
+x: 50
+y: -100
+
+#### Scale
+
+scale: 1.2
+scaleX: 2
+scaleY: 0.8
+
+#### Rotation
+
+rotate: 360
+rotateX: 45
+rotateY: 45
+
+#### Skew
+
+skewX: 10
+skewY: -10
+
+#### Size
+
+width: 300
+height: 200
+
+Supports units like px, %, vh, vw, and often auto.
+
+#### Color
+
+backgroundColor: "#ff0000"
+color: "#00ff00"
+borderColor: "#000"
+
+Supports hex, rgb, rgba, and hsl.
+
+Border Radius
+borderRadius: 20
+borderRadius: "50%"
+
+#### Shadows
+
+boxShadow: "0px 20px 40px rgba(0,0,0,0.2)"
+
+#### Filters
+
+filter: "blur(10px)"
+backdropFilter: "blur(20px)"
+
+#### Clip Path
+
+clipPath: "inset(0% 0% 0% 0%)"
+
+Useful for reveal effects and masking.
+
+#### SVG Animation
+
+<motion.path
+initial={{ pathLength: 0 }}
+animate={{ pathLength: 1 }}
+/>
+
+Supports pathLength, pathOffset, opacity, stroke, fill, strokeWidth.
+
+### Key Animation Concepts
+
+Multiple Properties
+
+```jsx
+<motion.div
+  initial={{ opacity: 0, y: 40, scale: 0.8 }}
+  animate={{ opacity: 1, y: 0, scale: 1 }}
+/>
+```
+
+State Driven Animation
+const [open, setOpen] = useState(false);
+
+```jsx
+<motion.div
+  animate={{ height: open ? 300 : 100, opacity: open ? 1 : 0.5 }}
+  transition={{ duration: 0.4 }}
+  onClick={() => setOpen(!open)}
+/>
+```
+
+Keyframes
+
+```jsx
+<motion.div animate={{ x: [0, 50, -50, 0] }} transition={{ duration: 1 }} />
+```
+
+Transition Controls
+Duration
+transition={{ duration: 0.5 }}
+
+Easing
+transition={{ ease: "easeInOut" }}
+
+Or custom:
+
+ease: [0.76, 0, 0.24, 1]
+
+Spring
+transition={{
+  type: "spring",
+  stiffness: 200,
+  damping: 20
+}}
+
+Delay
+transition={{ delay: 0.2 }}
+
+Repeat
+transition={{
+  repeat: Infinity,
+  repeatType: "loop",
+  duration: 1
+}}
+
+Mental Models
+
+Initial defines where it starts.
+Animate defines where it ends.
+Transition defines how it gets there.
