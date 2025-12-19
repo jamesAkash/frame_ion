@@ -1,7 +1,11 @@
-import Component from "./components/Anima2";
+import Component from "./components/Box3";
 
 const App = () => {
-  return <Component />;
+  return (
+    <div className="h-screen w-full justify-center items-center flex">
+      <Component />
+    </div>
+  );
 };
 
 export default App;

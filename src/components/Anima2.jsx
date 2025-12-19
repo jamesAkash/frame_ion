@@ -25,7 +25,13 @@ function Box() {
     <motion.div
       initial={{ opacity: 0, y: 40, scale: 0.2 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ type: "spring", stiffness: 280, damping: 10 }}
+      // transition={{ type: "spring", stiffness: 280, damping: 10 }}
+      // apple
+      // transition={{ type: "spring", stiffness: 140, damping: 20 }}
+      // playfull
+      // transition={{ type: "spring", stiffness: 300, damping: 8 }}
+      //bold reveal
+      // transition={{ type: "spring", stiffness: 80, damping: 30 }}
       style={{
         width: 120,
         height: 120,

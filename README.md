@@ -179,3 +179,25 @@ damping → resistance / bounce (lower = more bounce)
   }}
 />
 ```
+
+### Keyframes = multi step animation
+
+```jsx
+animate={{ property: [value1, value2, value3] }}
+
+```
+
+#### Repeat controls looping
+
+```jsx
+repeat: Infinity;
+repeatType: "loop" | "reverse" | "mirror";
+```
+
+Differences:
+
+loop → restart from start each time
+
+reverse → goes forward then backward same timeline
+
+mirror → similar to reverse but better for some keyframes
