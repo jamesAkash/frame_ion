@@ -201,3 +201,76 @@ loop → restart from start each time
 reverse → goes forward then backward same timeline
 
 mirror → similar to reverse but better for some keyframes
+
+## Scroll based Animation
+
+Framer Motion gives us two main tools:
+
+1. whileInView → animate when element scrolls into the screen
+2. useScroll + useTransform → advanced parallax / progress animations
+
+### Basic scoll reveal
+
+```jsx
+import { motion } from "framer-motion";
+
+export default function ScrollDemo() {
+  return (
+    <div style={{ height: "200vh", paddingTop: "200px" }}>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        style={{
+          width: 120,
+          height: 120,
+          margin: "auto",
+          background: "skyblue",
+          borderRadius: 12,
+        }}
+      />
+    </div>
+  );
+}
+```
+
+initial → before visible
+whileInView → when visible
+
+```jsx
+viewport={{ once: false, amount:0.4 }}
+```
+
+once makes it such that it only happens once and amount correlates to how much of the item should be in the viewport before the scroll based animation is triggered
+
+#### Staggered Animation
+
+```jsx
+const items = [1, 2, 3, 4];
+
+<motion.ul
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true }}
+  style={{ listStyle: "none", padding: 0 }}
+>
+  {items.map((i) => (
+    <motion.li
+      key={i}
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        show: { opacity: 1, y: 0 },
+      }}
+      transition={{ duration: 0.4, delay: i * 0.15 }}
+      style={{
+        width: 200,
+        height: 50,
+        margin: "20px auto",
+        background: "skyblue",
+        borderRadius: 10,
+      }}
+    />
+  ))}
+</motion.ul>;
+```

@@ -1,11 +1,7 @@
-import Component from "./components/Box3";
+import Component from "./components/ScrollBased";
 
 const App = () => {
-  return (
-    <div className="h-screen w-full justify-center items-center flex">
-      <Component />
-    </div>
-  );
+  return <Component />;
 };
 
 export default App;
