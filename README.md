@@ -156,3 +156,26 @@ Mental Models
 Initial defines where it starts.
 Animate defines where it ends.
 Transition defines how it gets there.
+
+#### Duration vs spring animation
+
+Duration animation = robotic but predictable
+Spring animation = natural, UI feels premium
+
+stiffness → strength of spring (higher = faster snap)
+
+damping → resistance / bounce (lower = more bounce)
+
+```jsx
+<motion.div
+  initial={{ opacity: 0, y: 40, scale: 0.2 }}
+  animate={{ opacity: 1, y: 0, scale: 1 }}
+  transition={{ type: "spring", stiffness: 280, damping: 10 }}
+  style={{
+    width: 120,
+    height: 120,
+    background: "skyblue",
+    borderRadius: 12,
+  }}
+/>
+```
